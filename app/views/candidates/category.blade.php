@@ -11,16 +11,18 @@
 			<th>Descripción</th>
 			<th>Ver</th>
 		</tr>
-		@foreach($category->candidates AS $candidate)
+		@foreach($category->paginate_candidates AS $candidate)
 		<tr>
 			<td>{{ $candidate->user->full_name }}</td>
-			<td>{{ $candidate->job_type }}</td>
+			<td>{{ $candidate->job_type_title }}</td>
 			<td>{{ $candidate->description }}</td>
 			<td width="50">
-				<a href="url" class="btn btn-info">Ver</a>
+				<a href="{{ route('candidate', [$candidate->slug, $candidate->id]) }}" class="btn btn-info">Ver</a>
 			</td>
 		</tr>
 		@endforeach
 	</table>
+
+	{{ $category->paginate_candidates->links() }}
 </div>
 @stop
