@@ -11,23 +11,35 @@
 </div>
 
 <div class="container">
-<!-- Example row of columns -->
-  <div class="row">
-	<div class="col-md-4">
-	  <h2>Nombre</h2>
-	  <p>Proyecto que estamos costruyendo con Laravel para el curso profecional de PHP y Laravel de Mejorando.la:</p>
-	  <p><a class="btn btn-default" href="#" role="button">Postúlate</a></p>
-	</div>
-	<div class="col-md-4">
-	  <h2>Tipo de trabajo</h2>
-	  <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-	  <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-   </div>
-	<div class="col-md-4">
-	  <h2>Descripción</h2>
-	  <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-	  <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-	</div>
-  </div>
+	<h1>Últimos candidatos</h1>
+
+	@foreach($latest_candidates AS $category)
+		<h2>{{ $category->name }}</h2>
+
+		<table class="table table-striped">
+			<tr>
+				<th>Nombre</th>
+				<th>Tipo</th>
+				<th>Descripción</th>
+				<th>Ver</th>
+			</tr>
+			@foreach($category->candidates AS $candidate)
+			<tr>
+				<td>{{ $candidate->user->full_name }}</td>
+				<td>{{ $candidate->job_type_title }}</td>
+				<td>{{ $candidate->description }}</td>
+				<td width="50">
+					<a href="{{ route('candidate', [$candidate->slug, $candidate->id]) }}" class="btn btn-info">Ver</a>
+				</td>
+			</tr>
+			@endforeach
+		</table>
+
+		<p>
+			<a href="{{ route('category', [$category->slug, $category->id]) }}">
+				Ver todos en {{ $category->name }}
+			</a>
+		</p>
+	@endforeach
 </div>
 @stop
