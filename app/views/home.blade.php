@@ -6,7 +6,7 @@
   <div class="container">
 	<h1>HireMe</h1>
 	<p>Proyecto que estamos costruyendo con Laravel para el curso profecional de PHP y Laravel de Mejorando.la:</p>
-	<p><a class="btn btn-primary btn-lg" href="#" role="button">Postúlate</a></p>
+	<p><a class="btn btn-primary btn-lg" href="{{ route('sign_up') }}" role="button">Postúlate</a></p>
   </div>
 </div>
 
