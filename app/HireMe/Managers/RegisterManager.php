@@ -1,4 +1,4 @@
-<?php namespace HireMe\Manager;
+<?php namespace HireMe\Managers;
 
 
 class RegisterManager extends BaseManager {

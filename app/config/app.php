@@ -122,9 +122,12 @@ return array(
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 
-		//Personales
+		//Vendor
 		'Way\Generators\GeneratorsServiceProvider',
 		'Barryvdh\Debugbar\ServiceProvider',
+
+		//Custom
+		'HireMe\Components\FieldServiceProvider',
 	),
 
 	/*

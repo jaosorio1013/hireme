@@ -8,29 +8,10 @@
 
 			{{ Form::open(['route' => 'register', 'method' => 'POST', 'role' => 'form', 'novalidate']) }}
 
-				<div class="form-group">
-					{{ Form::label('full_name', 'Nombre completo') }}
-					{{ Form::text('full_name', null, ['class' => 'form-control']) }}
-					{{ $errors->first('full_name', '<p class="error_message">:message</p>') }}
-				</div>
-
-				<div class="form-group">
-					{{ Form::label('email', 'Correo') }}
-					{{ Form::text('email', null, ['class' => 'form-control']) }}
-					{{ $errors->first('email', '<p class="error_message">:message</p>') }}
-				</div>
-
-				<div class="form-group">
-					{{ Form::label('password', 'Clave') }}
-					{{ Form::password('password', ['class' => 'form-control']) }}
-					{{ $errors->first('password', '<p class="error_message">:message</p>') }}
-				</div>
-
-				<div class="form-group">
-					{{ Form::label('password_confirmation', 'Repite la clave') }}
-					{{ Form::password('password_confirmation', ['class' => 'form-control']) }}
-					{{ $errors->first('password_confirmation', '<p class="error_message">:message</p>') }}
-				</div>
+				{{ App::make('field')->input('text', 'full_name') }}
+				{{ App::make('field')->input('email', 'email') }}
+				{{ App::make('field')->input('password', 'password') }}
+				{{ App::make('field')->input('password', 'password_confirmation') }}
 
 				<p>
 					<input type="submit" value="Registrar" class="btn btn-success"/>

@@ -1,6 +1,6 @@
 <?php
 
-use HireMe\Manager\RegisterManager;
+use HireMe\Managers\RegisterManager;
 use HireMe\Repositories\CandidateRepo;
 
 class UsersController extends BaseController {
@@ -14,7 +14,8 @@ class UsersController extends BaseController {
 
 	public function signUp()
 	{
-		return View::make('users/sign-up');
+		$fieldBuilder = new \HireMe\Components\FieldBuilder();
+		return View::make('users/sign-up', compact('fieldBuilder'));
 	}
 
 	public function register()
