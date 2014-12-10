@@ -8,10 +8,10 @@
 
 			{{ Form::open(['route' => 'register', 'method' => 'POST', 'role' => 'form', 'novalidate']) }}
 
-				{{ App::make('field')->input('text', 'full_name') }}
-				{{ App::make('field')->input('email', 'email') }}
-				{{ App::make('field')->input('password', 'password') }}
-				{{ App::make('field')->input('password', 'password_confirmation') }}
+				{{ Field::text('full_name') }}
+				{{ Field::email('email') }}
+				{{ Field::password('password') }}
+				{{ Field::password('password_confirmation') }}
 
 				<p>
 					<input type="submit" value="Registrar" class="btn btn-success"/>

@@ -8,7 +8,7 @@ class FieldServiceProvider extends ServiceProvider {
 	{
 		$this->app['field'] = $this->app->share(function($app)
 		{
-			$fieldBuilder = new FieldBuilder();
+			$fieldBuilder = new FieldBuilder($app['form']);
 			return $fieldBuilder;
 		});
 	}

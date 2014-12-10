@@ -1,11 +1,20 @@
 <?php namespace HireMe\Components;
 
+use Illuminate\Html\FormBuilder as Form;
+
 class FieldBuilder {
+
+	protected $form;
 
 	protected $defaultClass = [
 		'default' => 'form-control',
 		'checkbox' => '',
 	];
+
+	public function __construct(Form $form)
+	{
+		$this->form = $form;
+	}
 
 	public function getDefaultClass($type)
 	{
@@ -52,13 +61,13 @@ class FieldBuilder {
 		switch($type)
 		{
 			case 'select':
-				return \Form::select($name, $options, $value, $attributes);
+				return $this->form->select($name, $options, $value, $attributes);
 			case 'password':
-				return \Form::password($name, $attributes);
+				return $this->form->password($name, $attributes);
 			case 'checkbox':
-				return \Form::checkbox($name);
+				return $this->form->checkbox($name);
 			default:
-				return \Form::input($type, $name, $value, $attributes);
+				return $this->form->input($type, $name, $value, $attributes);
 		}
 	}
 
@@ -98,6 +107,17 @@ class FieldBuilder {
 		$template = $this->buildTemplate($type);
 
 		return \View::make($template, compact('name', 'label', 'control', 'error'));
+	}
+
+	public function password($name, $attributes = array())
+	{
+		return $this->input('password', $name, null, $attributes);
+	}
+
+	public function __call($method, $params)
+	{
+		array_unshift($params, $method);
+		return call_user_func_array([$this, 'input'], $params);
 	}
 
 } 
