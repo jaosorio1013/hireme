@@ -22,13 +22,9 @@ class UsersController extends BaseController {
 	{
 		$user = $this->candidateRepo->newCandidate();
 		$manager = new RegisterManager($user, Input::all());
+		$manager->save();
 
-		if($manager->save())
-		{
-			return Redirect::route('home');
-		}
-
-		return Redirect::back()->withInput()->withErrors($manager->getErrors());
+		return Redirect::route('home');
 	}
 
 	public function account()
@@ -41,13 +37,9 @@ class UsersController extends BaseController {
 	{
 		$user = Auth::user();
 		$manager = new AccountManager($user, Input::all());
+		$manager->save();
 
-		if($manager->save())
-		{
-			return Redirect::route('home');
-		}
-
-		return Redirect::back()->withInput()->withErrors($manager->getErrors());
+		return Redirect::route('home');
 	}
 
 } 

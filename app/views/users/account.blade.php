@@ -6,7 +6,7 @@
 		<div class="col-md-6">
 			<h1>Edita tu cuenta</h1>
 
-			{{ Form::model($user, ['route' => 'register', 'method' => 'PUT', 'role' => 'form', 'novalidate']) }}
+			{{ Form::model($user, ['route' => 'update_account', 'method' => 'PUT', 'role' => 'form', 'novalidate']) }}
 
 				{{ Field::text('full_name') }}
 				{{ Field::email('email') }}
@@ -14,7 +14,7 @@
 				{{ Field::password('password_confirmation') }}
 
 				<p>
-					<input type="submit" value="Registrar" class="btn btn-success"/>
+					<input type="submit" value="Actualizar" class="btn btn-success"/>
 				</p>
 
 			{{ Form::close() }}
