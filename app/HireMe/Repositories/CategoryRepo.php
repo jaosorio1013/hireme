@@ -9,4 +9,9 @@ class CategoryRepo extends BaseRepo {
 		return new Category;
 	}
 
+	public function geList()
+	{
+		return Category::lists('name', 'id');
+	}
+
 }

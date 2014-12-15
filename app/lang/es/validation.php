@@ -106,6 +106,8 @@ return array(
 		'email' => 'Correo electronico',
 		'password' => 'Clave',
 		'password_confirmation' => 'Repita su clave',
+		'category_id' => 'Categoría',
+		'job_type' => 'Tipo de trabajo',
 	),
 
 );
