@@ -29,10 +29,15 @@ abstract class BaseManager {
 	{
 		$this->isValid();
 
-		$this->entity->fill($this->data);
+		$this->entity->fill($this->prepareData($this->data));
 		$this->entity->save();
 
 		return true;
+	}
+
+	public function prepareData($data)
+	{
+		return $data;
 	}
 
 } 
