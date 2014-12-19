@@ -8,14 +8,22 @@ Route::get('candidates/{slug}/{id}', ['as' => 'category', 'uses' => 'CandidatesC
 //jaosorio/1
 Route::get('{slug}/{id}', ['as' => 'candidate', 'uses' => 'CandidatesController@show']);
 
-Route::get('sign-up', ['as' => 'sign_up', 'uses' => 'UsersController@signUp']);
-Route::post('sign-up', ['as' => 'register', 'uses' => 'UsersController@register']);
 
-Route::post('login', ['as' => 'login', 'uses' => 'AuthController@login']);
-Route::get('logout', ['as' => 'logout', 'uses' => 'AuthController@logout']);
+//Si el usuario no esta autenticado
+Route::group(['before' => 'guest'], function(){
+	Route::get('sign-up', ['as' => 'sign_up', 'uses' => 'UsersController@signUp']);
+	Route::post('sign-up', ['as' => 'register', 'uses' => 'UsersController@register']);
+	Route::post('login', ['as' => 'login', 'uses' => 'AuthController@login']);
+});
 
-//Formularios
-Route::get('account', ['as' => 'account', 'uses' => 'UsersController@account']);
-Route::put('account', ['as' => 'update_account', 'uses' => 'UsersController@updateAccount']);
-Route::get('profile', ['as' => 'profile', 'uses' => 'UsersController@profile']);
-Route::put('profile', ['as' => 'update_profile', 'uses' => 'UsersController@updateProfile']);
+
+//Si el usuario esta autenticado
+Route::group(['before' => 'auth'], function(){
+	//Rutas de formularios
+	require (__DIR__.'/routes/auth.php');
+
+	//Rutas del administrador
+	Route::group(['before' => 'is_admin'], function () {
+		require (__DIR__.'/routes/admin.php');
+	});
+});

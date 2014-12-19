@@ -23,6 +23,8 @@ class ProfileManager extends BaseManager {
 			$data['available'] = 0;
 		}
 
+		$this->entity->slug = \Str::slug($this->entity->user->full_name);
+
 		return $data;
 	}
 

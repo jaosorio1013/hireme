@@ -24,5 +24,11 @@
 	<h4>Descripción:</h4>
 
 	<p>{{ $candidate->description }}</p>
+
+	@if(is_admin())
+		<p>
+			<a href="{{ route('admin_candidate_edit', [$candidate->id]) }}" class="btn btn-info">Editar candidato</a>
+		</p>
+	@endif
 </div>
 @stop

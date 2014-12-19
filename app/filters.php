@@ -37,14 +37,7 @@ Route::filter('auth', function()
 {
 	if (Auth::guest())
 	{
-		if (Request::ajax())
-		{
-			return Response::make('Unauthorized', 401);
-		}
-		else
-		{
-			return Redirect::guest('login');
-		}
+		return Redirect::guest('/');
 	}
 });
 
@@ -86,5 +79,16 @@ Route::filter('csrf', function()
 	if (Session::token() !== Input::get('_token'))
 	{
 		throw new Illuminate\Session\TokenMismatchException;
+	}
+});
+
+
+/**
+ * Filtro para verificar si el usuario es administrador
+ */
+Route::filter('is_admin', function(){
+	if(!is_admin())
+	{
+		return Redirect::to('/');
 	}
 });
